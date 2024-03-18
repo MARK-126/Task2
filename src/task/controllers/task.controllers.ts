@@ -1,7 +1,7 @@
 import { Controller, Get, Delete, Post, Param, Body } from '@nestjs/common';
-import { Task } from './entities/task.entity';
-import { TaskService } from './task.service';
-import { CreateTaskDto } from './entities/dto/task.dto';
+import { Task } from '../entities/task.entity';
+import { TaskService } from '../providers/task.service';
+import { CreateTaskDto } from '../dto/task.dto';
 import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
@@ -45,7 +45,7 @@ export class TasksController {
   @Post()
   @ApiCreatedResponse({
     status: 201,
-    description: 'Created task has been successfully',
+    description: 'Creat task',
   })
   @ApiBadRequestResponse({
     status: 404,

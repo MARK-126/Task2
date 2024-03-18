@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { TaskStatus } from '../task.entity';
+import { TaskStatus } from '../entities/task.entity';
 
 export class CreateTaskDto {
   @ApiProperty({ type: 'string', description: 'It must have a title' })
