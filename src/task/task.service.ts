@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Task } from './entities/task.entity';
-import { CreateTaskDto } from './entities/task.dto';
+import { CreateTaskDto } from './entities/dto/task.dto';
 
 @Injectable()
 export class TaskService {
@@ -12,8 +12,9 @@ export class TaskService {
 
   async createTask(createTask: CreateTaskDto): Promise<Task> {
     const newTask = new Task();
-    newTask.descirption = createTask.description;
     newTask.title = createTask.title;
+    newTask.descirption = createTask.description;
+    newTask.status = createTask.status;
     return this.taskRepository.save(newTask);
   }
 

@@ -17,6 +17,6 @@ export class Task {
   @Column()
   descirption: string;
 
-  @Column({ type: 'enum', enum: TaskStatus, default: 'PENDING' })
+  @Column({ type: 'enum', enum: TaskStatus, default: 'DONE' })
   status: TaskStatus;
 }
