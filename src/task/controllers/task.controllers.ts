@@ -1,5 +1,13 @@
-import { Controller, Get, Delete, Post, Param, Body } from '@nestjs/common';
-import { Task } from '../entities/task.entity';
+import {
+  Controller,
+  Get,
+  Delete,
+  Post,
+  Param,
+  Body,
+  Query,
+} from '@nestjs/common';
+import { Task, TaskStatus } from '../entities/task.entity';
 import { TaskService } from '../providers/task.service';
 import { CreateTaskDto } from '../dto/task.dto';
 import {
@@ -66,5 +74,25 @@ export class TasksController {
   })
   removeTask(@Param('id') id: string) {
     this.taskService.deleteTask(id);
+  }
+}
+
+@ApiTags('filter tasks')
+@Controller('filtered-tasks')
+export class FilteredTaskByStatus {
+  constructor(private readonly taskService: TaskService) {}
+
+  @ApiResponse({
+    status: 200,
+    description: 'Return list of tasks by status',
+  })
+  @ApiNoContentResponse({ description: 'Tasks not found' })
+  @ApiBadRequestResponse({
+    status: 404,
+    description: 'Invalid data has been provided.',
+  })
+  @Get() //GET a /filterTask?status=PENDING
+  filterTask(@Query('status') status: TaskStatus): Promise<Task[]> {
+    return this.taskService.filterTask(status);
   }
 }
