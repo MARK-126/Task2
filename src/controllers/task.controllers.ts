@@ -7,9 +7,9 @@ import {
   Body,
   Query,
 } from '@nestjs/common';
-import { Task, TaskStatus } from '../entities/task.entity';
-import { TaskService } from '../providers/task.service';
-import { CreateTaskDto } from '../dto/task.dto';
+import { Task, TaskStatus } from '../task/entities/task.entity';
+import { TaskService } from '../task/providers/task.service';
+import { CreateTaskDto } from '../task/dto/task.dto';
 import {
   ApiBadRequestResponse,
   ApiCreatedResponse,

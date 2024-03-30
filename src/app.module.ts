@@ -3,13 +3,23 @@ import { TaskMOdule } from './task/task.module';
 import {
   FilteredTaskByStatus,
   TasksController,
-} from './task/controllers/task.controllers';
-import { DatabaseModule } from './task/dataBase/dataBase.module';
+} from './controllers/task.controllers';
+import { DatabaseModule } from './dataBase/dataBase.module';
 import { TaskService } from './task/providers/task.service';
 import { taskProviders } from './task/providers/task.providers';
+import { ConfigModule } from '@nestjs/config';
+/*import { config } from 'dotenv';
 
+config();
+*/
 @Module({
-  imports: [TaskMOdule, DatabaseModule],
+  imports: [
+    TaskMOdule,
+    DatabaseModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+  ],
   controllers: [TasksController, FilteredTaskByStatus],
   providers: [TaskService, ...taskProviders],
 })
